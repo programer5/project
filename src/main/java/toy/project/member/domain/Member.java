@@ -42,6 +42,16 @@ public class Member implements UserDetails {
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
+    @Builder
+    public Member(Long id, String username, String nickname, String address, String phone, String profileImg) {
+        this.id = id;
+        this.username = username;
+        this.nickname = nickname;
+        this.address = address;
+        this.phone = phone;
+        this.profileImg = profileImg;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles.stream()
