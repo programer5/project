@@ -46,6 +46,8 @@ dependencies {
 
 	implementation 'com.google.guava:guava:31.1-jre'
 
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 }
