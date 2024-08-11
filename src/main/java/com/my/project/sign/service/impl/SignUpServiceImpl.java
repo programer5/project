@@ -19,18 +19,21 @@ public class SignUpServiceImpl implements SignUpService {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public int signUp(SignUpRequestDto signUpRequestDto) {
+    @Transactional
+    public Long signUp(SignUpRequestDto signUpRequestDto) {
         boolean existMember = memberRepository.existsByEmail(signUpRequestDto.getEmail());
 
         if (existMember) {
             throw new EmailDuplicateException(signUpRequestDto.getEmail());
         }
 
-        Member.builder()
+        Member member = Member.builder()
                 .email(signUpRequestDto.getEmail())
                 .password(passwordEncrypt(signUpRequestDto.getPassword()))
                 .build();
 
+        Member saveMember = memberRepository.save(member);
+        return saveMember.getId();
     }
 
     private String passwordEncrypt(String password) {

@@ -13,7 +13,7 @@ public class SignController {
     private final SignUpService signUpService;
 
     @GetMapping("/api/v1/signup")
-    public int signUp(SignUpRequestDto SignUpRequestDto) {
+    public Long signUp(SignUpRequestDto SignUpRequestDto) {
         return signUpService.signUp(SignUpRequestDto);
     }
 }
